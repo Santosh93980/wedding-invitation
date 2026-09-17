@@ -49,8 +49,7 @@ html {
 }
 
 body {
-    font-family: "Cormorant Garamond", serif;
-
+    font-family: "Great Vibes", cursive;
     color: var(--text);
 
     background:
@@ -71,6 +70,40 @@ body {
         );
 
     overflow-x: hidden;
+}
+
+
+/* =========================================================
+   CURSIVE FONT OVERRIDE
+========================================================= */
+
+body,
+p,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button,
+strong {
+    font-family: "Great Vibes", cursive;
+}
+
+.nav-container a,
+.opening-welcome,
+.opening-date,
+.date-box .day,
+.date-box .time,
+#countdown,
+.hero-small,
+.location-date,
+.timeline-time,
+footer p {
+    font-family: "Great Vibes", cursive;
 }
 
 
@@ -342,8 +375,6 @@ body::after {
 
 .opening-welcome {
 
-    font-family: "Montserrat", sans-serif;
-
     font-size: 13px;
 
     font-weight: 500;
@@ -353,8 +384,6 @@ body::after {
 
 
 .opening-names {
-
-    font-family: "Great Vibes", cursive;
 
     font-size:
         clamp(
@@ -378,8 +407,6 @@ body::after {
 .opening-date {
 
     margin-top: 10px;
-
-    font-family: "Montserrat", sans-serif;
 
     font-size: 14px;
 
@@ -681,10 +708,6 @@ body::after {
 
     color: white;
 
-    font-family:
-        "Montserrat",
-        sans-serif;
-
     font-size: 14px;
 
     letter-spacing: 1px;
@@ -778,10 +801,6 @@ nav {
 
     color: var(--navy);
 
-    font-family:
-        "Montserrat",
-        sans-serif;
-
     font-size: 12px;
 
     font-weight: 600;
@@ -826,10 +845,6 @@ section {
 
 .section-title h2 {
 
-    font-family:
-        "DM Serif Display",
-        serif;
-
     font-size:
         clamp(38px,6vw,62px);
 
@@ -843,10 +858,6 @@ section {
 
 
 .section-title p {
-
-    font-family:
-        "Montserrat",
-        sans-serif;
 
     font-size: 12px;
 
@@ -896,10 +907,6 @@ section {
 
 .hero-small {
 
-    font-family:
-        "Montserrat",
-        sans-serif;
-
     font-size: 13px;
 
     letter-spacing: 4px;
@@ -912,10 +919,6 @@ section {
 
 
 .names {
-
-    font-family:
-        "Great Vibes",
-        cursive;
 
     font-size:
         clamp(58px,10vw,105px);
@@ -962,10 +965,6 @@ section {
     margin:
         20px auto;
 
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
     font-style: italic;
 
     font-size: 19px;
@@ -997,10 +996,6 @@ section {
 
 .date-box .day {
 
-    font-family:
-        "Montserrat",
-        sans-serif;
-
     font-size: 12px;
 
     letter-spacing: 4px;
@@ -1010,10 +1005,6 @@ section {
 .date-box strong {
 
     display: block;
-
-    font-family:
-        "DM Serif Display",
-        serif;
 
     font-size: 30px;
 
@@ -1027,10 +1018,6 @@ section {
 
 .date-box .time {
 
-    font-family:
-        "Montserrat",
-        sans-serif;
-
     font-size: 12px;
 
     letter-spacing: 2px;
@@ -1040,10 +1027,6 @@ section {
 #countdown {
 
     margin-top: 13px;
-
-    font-family:
-        "Montserrat",
-        sans-serif;
 
     font-size: 11px;
 
@@ -1145,10 +1128,6 @@ section {
 
 .card h3 {
 
-    font-family:
-        "DM Serif Display",
-        serif;
-
     font-size: 31px;
 
     color:
@@ -1177,6 +1156,29 @@ section {
 }
 
 
+/* =========================================================
+   PARENTS DETAILS
+========================================================= */
+
+.parents-title {
+    margin-top: 30px;
+}
+
+.parents-details {
+    margin-top: 8px;
+    font-size: 21px;
+    line-height: 1.6;
+}
+
+.parents-details span {
+    display: block;
+}
+
+
+/* =========================================================
+   MAP BUTTON
+========================================================= */
+
 .map-btn {
 
     display: inline-block;
@@ -1194,10 +1196,6 @@ section {
     border-radius: 30px;
 
     text-decoration: none;
-
-    font-family:
-        "Montserrat",
-        sans-serif;
 
     font-size: 12px;
 
@@ -1372,10 +1370,6 @@ section {
 
 .family-card h3 {
 
-    font-family:
-        "DM Serif Display",
-        serif;
-
     font-size: 26px;
 
     color:
@@ -1423,10 +1417,6 @@ section {
 
     text-align: right;
 
-    font-family:
-        "Montserrat",
-        sans-serif;
-
     font-size: 12px;
 
     font-weight: 600;
@@ -1454,10 +1444,6 @@ section {
 
 
 .timeline-content h3 {
-
-    font-family:
-        "DM Serif Display",
-        serif;
 
     font-size: 26px;
 
@@ -1515,10 +1501,6 @@ section {
 
 
 .location-date {
-
-    font-family:
-        "Montserrat",
-        sans-serif;
 
     font-size: 12px;
 
@@ -1583,10 +1565,6 @@ footer {
 
 .footer-names {
 
-    font-family:
-        "Great Vibes",
-        cursive;
-
     font-size: 50px;
 }
 
@@ -1594,10 +1572,6 @@ footer {
 footer p {
 
     margin-top: 8px;
-
-    font-family:
-        "Montserrat",
-        sans-serif;
 
     font-size: 11px;
 
@@ -1781,9 +1755,6 @@ footer p {
 
 <div id="opening">
 
-
-    <!-- Couple image -->
-
     <div class="opening-photo">
 
         <img
@@ -1794,8 +1765,6 @@ footer p {
     </div>
 
 
-    <!-- Opening message -->
-
     <div class="opening-message">
 
         <div class="opening-cross">
@@ -1805,8 +1774,6 @@ footer p {
         <div class="opening-welcome">
             YOU ARE CORDIALLY INVITED
         </div>
-
-        <!-- GROOM FIRST -->
 
         <div class="opening-names">
 
@@ -1827,8 +1794,6 @@ footer p {
     </div>
 
 
-    <!-- LEFT CURTAIN -->
-
     <div class="curtain curtain-left">
 
         <div class="curtain-rope"></div>
@@ -1838,8 +1803,6 @@ footer p {
     </div>
 
 
-    <!-- RIGHT CURTAIN -->
-
     <div class="curtain curtain-right">
 
         <div class="curtain-rope"></div>
@@ -1848,8 +1811,6 @@ footer p {
 
     </div>
 
-
-    <!-- OPEN BUTTON -->
 
     <button
         class="open-button"
@@ -1929,7 +1890,6 @@ footer p {
 
     <div class="hero-content">
 
-
         <div class="hero-cross">
             ✝
         </div>
@@ -1939,8 +1899,6 @@ footer p {
             WITH THE BLESSINGS OF GOD
         </div>
 
-
-        <!-- GROOM FIRST -->
 
         <div class="names">
 
@@ -2055,6 +2013,22 @@ footer p {
                 and togetherness.
             </p>
 
+            <h4 class="parents-title">
+                Groom's Parents
+            </h4>
+
+            <div class="parents-details">
+
+                <span>
+                    Sri Mendu Gajendra
+                </span>
+
+                <span>
+                    Smt. Madhavi
+                </span>
+
+            </div>
+
         </div>
 
 
@@ -2121,6 +2095,22 @@ footer p {
                 of her family, Sulomani joins
                 this beautiful new beginning.
             </p>
+
+            <h4 class="parents-title">
+                Bride's Parents
+            </h4>
+
+            <div class="parents-details">
+
+                <span>
+                    Sri Nadiminti Santosh
+                </span>
+
+                <span>
+                    Smt. Nadiminti Saradha
+                </span>
+
+            </div>
 
         </div>
 
@@ -2383,7 +2373,8 @@ footer p {
 
         </div>
 
-       <div
+
+        <div
             class="gallery-item"
             onclick="openGallery(this)"
         >
@@ -2395,7 +2386,8 @@ footer p {
 
         </div>
 
-      <div
+
+        <div
             class="gallery-item"
             onclick="openGallery(this)"
         >
@@ -2406,6 +2398,7 @@ footer p {
             >
 
         </div>
+
     </div>
 
 </section>
@@ -2542,12 +2535,14 @@ footer p {
             </h3>
 
             <h4>
-               At Bride's Home,
-               Tekkali-Temburu to Marripadu Rd,
-               Banjeripeta, Lingalavalasa,
-               Andhra Pradesh 532203.
-               
-               Wednesday, 14 October 2026
+                At Bride's Home,
+                Tekkali-Temburu to Marripadu Rd,
+                Banjeripeta, Lingalavalasa,
+                Andhra Pradesh 532203.
+
+                <br><br>
+
+                Wednesday, 14 October 2026
             </h4>
 
             <p>
