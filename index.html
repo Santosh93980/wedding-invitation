@@ -1962,6 +1962,92 @@
 
         }
 
+        .wedding-footer {
+    background-color: #1a1a1a; /* Elegant dark background */
+    color: #ffffff;
+    padding: 40px 20px 20px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-top: 4px solid #25D366; /* Elegant WhatsApp brand accent line */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #333;
+}
+
+.footer-brand h3 {
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+}
+
+.footer-brand p {
+    margin: 0;
+    color: #b3b3b3;
+    font-size: 14px;
+}
+
+.footer-channel-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.footer-channel-box span {
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+.footer-whatsapp-btn {
+    background-color: #25D366;
+    color: white !important;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+    transition: all 0.3s ease;
+}
+
+.footer-whatsapp-btn:hover {
+    background-color: #1ebd54;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 13px;
+    color: #888888;
+}
+
+/* Responsive Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+    }
+    
+    .footer-channel-box {
+        align-items: center;
+    }
+}
+
+
     </style>
 
 </head>
@@ -3092,9 +3178,26 @@
 
         </p>
 
-<a href="https://whatsapp.com/channel/0029VbB6Y3I9hXFCYtSeCr22" target="_blank">Join our WhatsApp Channel for web site making - Digital Innovation Tech</a>
-
     </footer>
+<footer class="wedding-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>Digital Innovation Tech</h3>
+            <p>Crafting beautiful web experiences for your special days.</p>
+        </div>
+        
+        <div class="footer-channel-box">
+            <span>Planning a wedding or website? Join us! 📱</span>
+            <a href="https://whatsapp.com" target="_blank" class="footer-whatsapp-btn">
+                <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.516 2.266 2.27 3.507 5.286 3.505 8.492-.005 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.503-5.714-1.458L0 24zm6.59-4.846c1.66.986 3.288 1.479 5.362 1.48 5.432-.001 9.853-4.43 9.856-9.864.001-2.63-1.022-5.101-2.881-6.964E-1.859-1.863-4.327-2.889-6.953-2.89-5.438 0-9.86 4.426-9.863 9.86-.001 2.09.547 4.123 1.588 5.925L2.662 21.397l4.795-1.258-.81-.985z"/></svg>
+                Join Our WhatsApp Channel
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Digital Innovation Tech. All Rights Reserved.</p>
+    </div>
+</footer>
 
 
 
