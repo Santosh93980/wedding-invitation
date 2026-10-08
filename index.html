@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="config.js"></script>
 
     <meta charset="UTF-8">
 
@@ -4061,6 +4062,49 @@
 
 </script>
 
+
+    <script>
+        /* Anonymous visitor counter / technical analytics */
+        (function trackWeddingVisitor() {
+            const endpoint = window.WEDDING_DATA_ENDPOINT || "";
+            if (!endpoint) return;
+
+            const visitKey = "weddingVisitId";
+            let visitId = sessionStorage.getItem(visitKey);
+            if (!visitId) {
+                visitId = (window.crypto && crypto.randomUUID)
+                    ? crypto.randomUUID()
+                    : String(Date.now()) + "-" + Math.random().toString(36).slice(2);
+                sessionStorage.setItem(visitKey, visitId);
+            }
+
+            const payload = new URLSearchParams({
+                action: "visit",
+                page: window.location.pathname || "/",
+                language: document.documentElement.lang || localStorage.getItem("weddingLanguage") || "en",
+                referrer: document.referrer || "",
+                screen: window.innerWidth + "x" + window.innerHeight,
+                userAgent: navigator.userAgent || "",
+                visitId: visitId
+            });
+
+            try {
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon(endpoint, payload);
+                } else {
+                    fetch(endpoint, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+                        body: payload.toString(),
+                        keepalive: true
+                    });
+                }
+            } catch (e) {
+                console.warn("Visitor analytics unavailable:", e);
+            }
+        })();
+    </script>
 
 </body>
 </html>
