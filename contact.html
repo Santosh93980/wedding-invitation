@@ -67,6 +67,32 @@
             margin: 0 auto;
         }
 
+        .contact-topbar {
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:16px;
+            margin-bottom:22px;
+        }
+
+        .language-toggle {
+            border:1px solid rgba(232,197,111,.65);
+            border-radius:999px;
+            padding:7px 16px;
+            background:linear-gradient(135deg,rgba(232,197,111,.18),rgba(255,255,255,.06));
+            color:#f8df9b;
+            font:700 18px "Caveat",cursive;
+            cursor:pointer;
+            box-shadow:0 5px 18px rgba(0,0,0,.18);
+        }
+
+        .language-toggle:hover {
+            transform:translateY(-2px);
+            color:#fff;
+        }
+
+        .lang-te { display:none; }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -245,7 +271,13 @@
         </div>
 
         <main class="contact-shell">
-            <a class="back-link" href="index.html">← Back to Wedding Invitation</a>
+            <div class="contact-topbar">
+                <a class="back-link" href="index.html">← Back to Wedding Invitation</a>
+                <button type="button" class="language-toggle" id="languageToggle" aria-label="Switch to Telugu">
+                    <span class="lang-en">తెలుగు</span>
+                    <span class="lang-te">English</span>
+                </button>
+            </div>
 
             <section class="contact-card">
                 <div class="contact-info">
@@ -311,6 +343,62 @@
             <div class="footer">© 2026 Digital Innovation Tech. All Rights Reserved.</div>
         </main>
     </div>
+
+    <script>
+        /* English / Telugu language switcher */
+        (function () {
+            const translations = {
+                "← Back to Wedding Invitation":"← వివాహ ఆహ్వానానికి తిరిగి వెళ్లండి",
+                "LET'S CREATE":"సృష్టిద్దాం",
+                "Want a beautiful, responsive wedding invitation website like this? Send your details and requirements. We would love to hear from you.":"ఇలాంటి అందమైన, మొబైల్‌కు అనుకూలమైన వివాహ ఆహ్వాన వెబ్‌సైట్ కావాలా? మీ వివరాలు మరియు అవసరాలను పంపండి. మీతో మాట్లాడటం మాకు ఆనందంగా ఉంటుంది.",
+                "Get in touch":"సంప్రదించండి",
+                "Send Your Enquiry":"మీ అభ్యర్థనను పంపండి",
+                "Name *":"పేరు *",
+                "Your full name":"మీ పూర్తి పేరు",
+                "Mobile Number *":"మొబైల్ నంబర్ *",
+                "Your mobile number":"మీ మొబైల్ నంబర్",
+                "Email *":"ఈమెయిల్ *",
+                "Your email address":"మీ ఈమెయిల్ చిరునామా",
+                "Subject *":"విషయం *",
+                "What do you need?":"మీకు ఏమి కావాలి?",
+                "Comments / Requirements *":"వ్యాఖ్యలు / అవసరాలు *",
+                "Tell us about your wedding website or project...":"మీ వివాహ వెబ్‌సైట్ లేదా ప్రాజెక్ట్ గురించి వివరించండి...",
+                "Send Enquiry ✦":"అభ్యర్థన పంపండి ✦",
+                "Your message will be sent securely to Digital Innovation Tech.":"మీ సందేశం Digital Innovation Tech కు సురక్షితంగా పంపబడుతుంది.",
+                "© 2026 Digital Innovation Tech. All Rights Reserved.":"© 2026 Digital Innovation Tech. సర్వహక్కులు రిజర్వ్ చేయబడ్డాయి."
+            };
+            const reverse = Object.fromEntries(Object.entries(translations).map(([en,te])=>[te,en]));
+            const normalize = value => value.replace(/\s+/g," ").trim();
+
+            function applyLanguage(lang) {
+                const map = lang === "te" ? translations : reverse;
+                const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+                const nodes=[]; let node;
+                while((node=walker.nextNode())) nodes.push(node);
+                nodes.forEach(n=>{
+                    const key=normalize(n.nodeValue);
+                    if(!map[key]) return;
+                    const lead=n.nodeValue.match(/^\s*/)?.[0]||"";
+                    const trail=n.nodeValue.match(/\s*$/)?.[0]||"";
+                    n.nodeValue=lead+map[key]+trail;
+                });
+                document.documentElement.lang=lang;
+                document.title=lang==="te" ? "సంప్రదించండి | Digital Innovation Tech" : "Contact | Digital Innovation Tech";
+                localStorage.setItem("weddingLanguage",lang);
+                const b=document.getElementById("languageToggle");
+                if(b){
+                    b.querySelector(".lang-en").style.display=lang==="en"?"inline":"none";
+                    b.querySelector(".lang-te").style.display=lang==="te"?"inline":"none";
+                    b.setAttribute("aria-label",lang==="en"?"Switch to Telugu":"Switch to English");
+                }
+            }
+
+            const b=document.getElementById("languageToggle");
+            const saved=localStorage.getItem("weddingLanguage")||"en";
+            if(b) b.addEventListener("click",()=>applyLanguage((localStorage.getItem("weddingLanguage")||"en")==="en"?"te":"en"));
+            applyLanguage(saved);
+        })();
+    </script>
 
     <script>
         /*
