@@ -2048,7 +2048,49 @@
 }
 
 
-    </style>
+    
+        /* Updated wedding gallery - two polished couple photos */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .gallery-item {
+            height: 430px;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 2px solid rgba(232,197,111,0.38);
+            background: rgba(255,255,255,0.04);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.28);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.55s ease, filter 0.35s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.045);
+            filter: brightness(1.03) saturate(1.04);
+        }
+
+        @media (max-width: 760px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .gallery-item {
+                height: 360px;
+            }
+        }
+
+</style>
 
 </head>
 
@@ -2818,65 +2860,27 @@
             </div>
 
 
+
             <div class="gallery-grid">
 
-
                 <div class="gallery-item">
-
                     <img
-                        src="Couple-image1.jpeg"
-                        alt="Wedding memory 1"
+                        src="gallery-image1.jpg"
+                        alt="Sampath Kumar and Sulomani - beautiful memory"
                         loading="lazy"
                     >
-
                 </div>
-
 
                 <div class="gallery-item">
-
                     <img
-                        src="couple-image2.jpeg"
-                        alt="Wedding memory 2"
+                        src="gallery-image2.jpg"
+                        alt="Sampath Kumar and Sulomani - outdoor memory"
                         loading="lazy"
                     >
-
                 </div>
-
-
-                <div class="gallery-item">
-
-                    <img
-                        src="couple-image3.jpeg"
-                        alt="Wedding memory 3"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="gallery-item">
-
-                    <img
-                        src="couple-image4.jpeg"
-                        alt="Wedding memory 4"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="gallery-item">
-
-                    <img
-                        src="couple-image5.jpeg"
-                        alt="Wedding memory 5"
-                        loading="lazy"
-                    >
-
-                </div>
-
 
             </div>
+
 
         </div>
 
