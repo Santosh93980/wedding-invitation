@@ -16,6 +16,7 @@
  */
 const CONTACT_EMAIL = "palakollu.santosh16@gmail.com";
 const XLSX_PATH = "data/wedding-website-data.xlsx";
+const EXPORT_XLSX_TO_GITHUB = true;
 
 function doGet(e) {
   return json_({ ok: true, service: "wedding-invitation-data" });
@@ -30,8 +31,8 @@ function doPost(e) {
 
     if (action === "contact") {
       appendContact_(ss, data);
-      exportWorkbookToGitHub_(ss);
-      return json_({ ok: true, saved: "contact" });
+      const githubExport = EXPORT_XLSX_TO_GITHUB ? tryExportWorkbookToGitHub_(ss) : { exported: false, reason: "disabled" };
+      return json_({ ok: true, saved: "contact", githubExport: githubExport });
     }
 
     if (action === "visit") {
@@ -39,7 +40,7 @@ function doPost(e) {
       updateDashboard_(ss);
       const visitorCount = ss.getSheetByName("Visitors").getLastRow() - 1;
       if (visitorCount > 0 && visitorCount % 10 === 0) {
-        exportWorkbookToGitHub_(ss);
+        tryExportWorkbookToGitHub_(ss);
       }
       return json_({ ok: true, saved: "visitor" });
     }
@@ -123,6 +124,16 @@ function appendVisitor_(ss, d) {
 
 function clean_(value) {
   return String(value || "").slice(0, 4000);
+}
+
+function tryExportWorkbookToGitHub_(ss) {
+  try {
+    exportWorkbookToGitHub_(ss);
+    return { exported: true };
+  } catch (err) {
+    console.warn("Google Sheet was saved, but optional GitHub XLSX export was skipped:", err);
+    return { exported: false, reason: String(err) };
+  }
 }
 
 function exportWorkbookToGitHub_(ss) {
