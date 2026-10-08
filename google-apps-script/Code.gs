@@ -36,6 +36,11 @@ function doPost(e) {
 
     if (action === "visit") {
       appendVisitor_(ss, data);
+      updateDashboard_(ss);
+      const visitorCount = ss.getSheetByName("Visitors").getLastRow() - 1;
+      if (visitorCount > 0 && visitorCount % 10 === 0) {
+        exportWorkbookToGitHub_(ss);
+      }
       return json_({ ok: true, saved: "visitor" });
     }
 
@@ -73,6 +78,28 @@ function setupSheets_(ss) {
     visitors.appendRow(["Timestamp","Page","Language","Referrer","Screen Size","User Agent","Visit ID"]);
     visitors.setFrozenRows(1);
   }
+
+  updateDashboard_(ss);
+}
+
+function updateDashboard_(ss) {
+  let dashboard = ss.getSheetByName("Dashboard");
+  if (!dashboard) dashboard = ss.insertSheet("Dashboard", 0);
+
+  dashboard.clear();
+  dashboard.getRange("A1").setValue("Digital Innovation Tech - Wedding Website Dashboard");
+  dashboard.getRange("A3").setValue("Total Page Visits");
+  dashboard.getRange("B3").setFormula("=MAX(0,COUNTA(Visitors!A2:A))");
+  dashboard.getRange("A4").setValue("Unique Browser Sessions");
+  dashboard.getRange("B4").setFormula("=IFERROR(COUNTA(UNIQUE(FILTER(Visitors!G2:G,Visitors!G2:G<>""))),0)");
+  dashboard.getRange("A5").setValue("Contact Enquiries");
+  dashboard.getRange("B5").setFormula("=MAX(0,COUNTA(Contacts!A2:A))");
+  dashboard.getRange("A7").setValue("Note");
+  dashboard.getRange("B7").setValue("Visitors are anonymous technical visits. Names are collected only when a visitor submits the contact form.");
+  dashboard.getRange("A1:B1").merge();
+  dashboard.getRange("A1").setFontWeight("bold");
+  dashboard.getRange("A3:A5").setFontWeight("bold");
+  dashboard.autoResizeColumns(1, 2);
 }
 
 function appendContact_(ss, d) {
