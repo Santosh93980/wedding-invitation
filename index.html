@@ -1962,93 +1962,6 @@
 
         }
 
-        .wedding-footer {
-    background-color: #1a1a1a; /* Elegant dark background */
-    color: #ffffff;
-    padding: 40px 20px 20px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-top: 4px solid #25D366; /* Elegant WhatsApp brand accent line */
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #333;
-}
-
-.footer-brand h3 {
-    margin: 0 0 8px 0;
-    font-size: 22px;
-    letter-spacing: 0.5px;
-}
-
-.footer-brand p {
-    margin: 0;
-    color: #b3b3b3;
-    font-size: 14px;
-}
-
-.footer-channel-box {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 12px;
-}
-
-.footer-channel-box span {
-    font-size: 14px;
-    color: #e0e0e0;
-}
-
-.footer-whatsapp-btn {
-    background-color: #25D366;
-    color: white !important;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 15px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
-    transition: all 0.3s ease;
-}
-
-.footer-whatsapp-btn:hover {
-    background-color: #1ebd54;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 13px;
-    color: #888888;
-}
-
-/* Responsive Media Query for Mobile Devices */
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 25px;
-    }
-    
-    .footer-channel-box {
-        align-items: center;
-    }
-}
-
-
-    
         /* Updated wedding gallery - two polished couple photos */
         .gallery-grid {
             display: grid;
@@ -2087,6 +2000,212 @@
 
             .gallery-item {
                 height: 360px;
+            }
+        }
+
+
+        /* =====================================================
+           FLORAL BACKGROUND ANIMATION
+        ====================================================== */
+
+        .floral-background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-flower {
+            position: absolute;
+            top: -12vh;
+            color: rgba(246, 215, 151, 0.55);
+            text-shadow: 0 0 14px rgba(246, 215, 151, 0.22);
+            animation: flowerFall linear infinite;
+            user-select: none;
+        }
+
+        @keyframes flowerFall {
+            0% { transform: translate3d(0,-12vh,0) rotate(0deg); opacity:0; }
+            12% { opacity:.8; }
+            50% { transform: translate3d(35px,52vh,0) rotate(180deg); }
+            88% { opacity:.75; }
+            100% { transform: translate3d(-45px,112vh,0) rotate(360deg); opacity:0; }
+        }
+
+        /* =====================================================
+           FINAL GALLERY PRESENTATION
+        ====================================================== */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: minmax(0,1.35fr) minmax(0,.9fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .gallery-item {
+            height: 430px;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 2px solid rgba(232,197,111,.38);
+            background: rgba(255,255,255,.04);
+            box-shadow: 0 18px 50px rgba(0,0,0,.28);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .55s ease, filter .35s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.045);
+            filter: brightness(1.03) saturate(1.04);
+        }
+
+        /* =====================================================
+           NEW FOOTER
+        ====================================================== */
+
+        .site-footer {
+            position: relative;
+            z-index: 5;
+            padding: 30px 20px 22px;
+            background: rgba(3,12,31,.88);
+            border-top: 1px solid rgba(232,197,111,.25);
+            backdrop-filter: blur(12px);
+        }
+
+        .footer-top {
+            width: 100%;
+            max-width: 1150px;
+            min-height: 62px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-spacer { min-height: 1px; }
+
+        .footer-copyright {
+            text-align: center;
+            color: #e8c56f;
+            font-family: "Cormorant Garamond",serif;
+            font-size: 18px;
+            letter-spacing: .5px;
+            white-space: nowrap;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(232,197,111,.35);
+            border-radius: 50%;
+            color: #f5df9d;
+            background: rgba(255,255,255,.04);
+            transition: .3s ease;
+        }
+
+        .footer-socials a:hover {
+            transform: translateY(-3px);
+            color: #fff;
+            border-color: rgba(232,197,111,.8);
+            background: rgba(232,197,111,.12);
+        }
+
+        .footer-socials svg {
+            width: 19px;
+            height: 19px;
+            fill: currentColor;
+        }
+
+        .footer-reachout {
+            max-width: 1150px;
+            margin: 18px auto 0;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,.08);
+            text-align: center;
+            color: #bfb8a8;
+            font-size: 18px;
+        }
+
+        .footer-reachout strong { color:#e8c56f; }
+
+        /* =====================================================
+           STICKY CHATGPT ICON
+        ====================================================== */
+
+        .sticky-chatgpt {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 62px;
+            height: 62px;
+            z-index: 99990;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 12px 32px rgba(0,0,0,.42),0 0 0 4px rgba(232,197,111,.22);
+            transition: transform .3s ease,box-shadow .3s ease;
+        }
+
+        .sticky-chatgpt:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 16px 38px rgba(0,0,0,.48),0 0 0 5px rgba(232,197,111,.28);
+        }
+
+        .sticky-chatgpt svg { width:42px;height:42px; }
+        .sticky-chatgpt svg circle { fill:#111; }
+        .sticky-chatgpt svg path { fill:#fff; }
+
+        @media (max-width:760px) {
+            .gallery-grid { grid-template-columns:1fr; gap:18px; }
+            .gallery-item { height:360px; }
+
+            .footer-top {
+                grid-template-columns:1fr;
+                gap:16px;
+            }
+
+            .footer-spacer { display:none; }
+            .footer-copyright {
+                white-space:normal;
+                order:1;
+                font-size:16px;
+            }
+
+            .footer-socials {
+                order:2;
+                justify-content:center;
+            }
+
+            .footer-reachout {
+                font-size:16px;
+                line-height:1.4;
+            }
+
+            .sticky-chatgpt {
+                right:16px;
+                bottom:16px;
+                width:56px;
+                height:56px;
             }
         }
 
@@ -2171,10 +2290,9 @@
          FLOATING PARTICLES
     ====================================================== -->
 
-    <div
-        class="particles"
-        id="particles"
-    ></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="floral-background" id="floralBackground" aria-hidden="true"></div>
 
 
 
@@ -3158,51 +3276,55 @@
          FOOTER
     ====================================================== -->
 
-    <footer>
+    <footer class="site-footer">
 
+        <div class="footer-top">
+            <div class="footer-spacer"></div>
 
-        <div class="footer-names">
+            <div class="footer-copyright">
+                © 2026 Sampath Kumar & Sulomani. All Rights Reserved.
+            </div>
 
-            Sampath Kumar & Sulomani
+            <div class="footer-socials" aria-label="Social media icons">
 
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 12 16.5 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6A1.5 1.5 0 1 1 16 7.5 1.5 1.5 0 0 1 17.5 6z"/></svg>
+                </a>
+
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.75l.4-3h-3.15V9.08c0-.87.24-1.46 1.5-1.46h1.75V4.94c-.3-.04-1.34-.13-2.55-.13-2.52 0-4.25 1.54-4.25 4.38V11H7v3h2.95v8h3.55z"/></svg>
+                </a>
+
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.12C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.4.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.12C4.46 20.5 12 20.5 12 20.5s7.54 0 9.4-.58a3 3 0 0 0 2.1-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.8V8.2l6.3 3.8-6.3 3.8z"/></svg>
+                </a>
+
+                <a href="https://whatsapp.com/channel/0029VbB6Y3I9hXFCYtSeCr22" target="_blank" rel="noopener" aria-label="WhatsApp Channel" title="WhatsApp Channel">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.85 11.85 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.15 1.59 5.96L.06 24l6.28-1.64a11.9 11.9 0 0 0 5.72 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.16-3.48-8.41zM12.07 21.8h-.01a9.88 9.88 0 0 1-5.03-1.38l-.36-.21-3.73.98 1-3.64-.23-.37a9.87 9.87 0 0 1-1.51-5.27C2.2 6.45 6.63 2.02 12.07 2.02c2.64 0 5.12 1.03 6.98 2.9a9.84 9.84 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.87 9.89zm5.43-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.2-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.48-.88-.78-1.48-1.74-1.65-2.03-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.09 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+                </a>
+
+            </div>
         </div>
 
-
-        <p>
-
-            United in Love • Blessed by God •
-            Forever Together
-
-        </p>
-
-
-        <p>
-
-            ✝ With God's Blessings ✝
-
-        </p>
+        <div class="footer-reachout">
+            For beautiful wedding invitation websites like this, reach out to
+            <strong>Digital Innovation Tech</strong>.
+        </div>
 
     </footer>
-<footer class="wedding-footer">
-    <div class="footer-container">
-        <div class="footer-brand">
-            <h3>Digital Innovation Tech</h3>
-            <p>Crafting beautiful web experiences for your special days.</p>
-        </div>
-        
-        <div class="footer-channel-box">
-            <span>Planning a wedding or website? Join us! 📱</span>
-            <a href="https://whatsapp.com" target="_blank" class="footer-whatsapp-btn">
-                <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.516 2.266 2.27 3.507 5.286 3.505 8.492-.005 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.503-5.714-1.458L0 24zm6.59-4.846c1.66.986 3.288 1.479 5.362 1.48 5.432-.001 9.853-4.43 9.856-9.864.001-2.63-1.022-5.101-2.881-6.964E-1.859-1.863-4.327-2.889-6.953-2.89-5.438 0-9.86 4.426-9.863 9.86-.001 2.09.547 4.123 1.588 5.925L2.662 21.397l4.795-1.258-.81-.985z"/></svg>
-                Join Our WhatsApp Channel
-            </a>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Digital Innovation Tech. All Rights Reserved.</p>
-    </div>
-</footer>
 
+    <!-- Sticky ChatGPT icon — redirects only to the requested WhatsApp Channel -->
+    <a class="sticky-chatgpt"
+       href="https://whatsapp.com/channel/0029VbB6Y3I9hXFCYtSeCr22"
+       target="_blank"
+       rel="noopener"
+       aria-label="Digital Innovation Tech WhatsApp Channel"
+       title="Digital Innovation Tech">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="30"></circle>
+            <path d="M42.7 20.1a14.2 14.2 0 0 0-22.1 2.3 13.9 13.9 0 0 0-1.4 13.1l-2.1 7.7 7.9-2a14.1 14.1 0 0 0 17.7-21.1zm-10.5 24c-2.1 0-4.1-.5-5.9-1.5l-.5-.3-4.7 1.2 1.3-4.6-.3-.5a11.7 11.7 0 1 1 10.1 5.7zm6.4-8.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.8-2.1-.2-.3 0-.5.2-.7.2-.2.4-.4.6-.6.2-.2.2-.4.3-.6.1-.2 0-.4-.1-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.1 3.1 1.2 3.3c.2.2 2.1 3.3 5.1 4.6.7.3 1.3.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.4z"/>
+        </svg>
+    </a>
 
 
     <!-- =====================================================
@@ -3608,7 +3730,32 @@
         );
 
 
-    </script>
+    
+        /* =====================================================
+           FLORAL FLOWER ANIMATION
+        ====================================================== */
+
+        (function createFloralAnimation() {
+            const container = document.getElementById("floralBackground");
+            if (!container) return;
+
+            const flowers = ["✿","❀","❁","✾","❋"];
+
+            for (let i = 0; i < 18; i++) {
+                const flower = document.createElement("span");
+                flower.className = "floating-flower";
+                flower.textContent = flowers[i % flowers.length];
+
+                flower.style.left = (Math.random() * 100) + "%";
+                flower.style.fontSize = (15 + Math.random() * 19) + "px";
+                flower.style.animationDuration = (13 + Math.random() * 13) + "s";
+                flower.style.animationDelay = (Math.random() * -22) + "s";
+
+                container.appendChild(flower);
+            }
+        })();
+
+</script>
 
 
 </body>
