@@ -4009,7 +4009,7 @@
                 Object.entries(translations).map(([en, te]) => [te, en])
             );
 
-            const normalize = value => value.replace(/\\s+/g, " ").trim();
+            const normalize = value => value.replace(/\s+/g, " ").trim();
 
             function translatePage(language) {
                 const map = language === "te" ? translations : reverseTranslations;
@@ -4027,8 +4027,8 @@
                     const value = normalize(textNode.nodeValue);
                     if (!value || !map[value]) return;
 
-                    const leading = textNode.nodeValue.match(/^\\s*/)?.[0] || "";
-                    const trailing = textNode.nodeValue.match(/\\s*$/)?.[0] || "";
+                    const leading = textNode.nodeValue.match(/^\s*/)?.[0] || "";
+                    const trailing = textNode.nodeValue.match(/\s*$/)?.[0] || "";
                     textNode.nodeValue = leading + map[value] + trailing;
                 });
 
