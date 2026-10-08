@@ -2147,6 +2147,67 @@
         .footer-reachout strong { color:#e8c56f; }
 
         /* =====================================================
+           LANGUAGE TOGGLE + HIGHLIGHTED CONTACT
+        ====================================================== */
+
+        .language-toggle {
+            border: 1px solid rgba(232,197,111,.65);
+            border-radius: 999px;
+            padding: 7px 16px;
+            background: linear-gradient(135deg, rgba(232,197,111,.18), rgba(255,255,255,.06));
+            color: #f8df9b;
+            font: 700 18px "Caveat", cursive;
+            cursor: pointer;
+            box-shadow: 0 5px 18px rgba(0,0,0,.18);
+            transition: .25s ease;
+        }
+
+        .language-toggle:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, rgba(232,197,111,.32), rgba(255,255,255,.10));
+            color: #fff;
+        }
+
+        .lang-te { display:none; }
+
+        .footer-reachout {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            flex-wrap:wrap;
+        }
+
+        .reachout-contact-btn {
+            display:inline-flex;
+            align-items:center;
+            gap:7px;
+            padding:9px 18px;
+            border:1px solid rgba(232,197,111,.78);
+            border-radius:999px;
+            color:#102044;
+            background:linear-gradient(135deg,#e9c46a,#f5d98a);
+            font-size:18px;
+            font-weight:700;
+            box-shadow:0 8px 24px rgba(0,0,0,.22);
+            transition:.25s ease;
+        }
+
+        .reachout-contact-btn strong { color:#102044; }
+
+        .reachout-contact-btn:hover {
+            transform:translateY(-2px) scale(1.02);
+            box-shadow:0 12px 30px rgba(0,0,0,.32);
+        }
+
+        @media (max-width:760px) {
+            .language-toggle { padding:6px 13px; font-size:17px; }
+            .footer-reachout { gap:9px; }
+            .reachout-contact-btn { font-size:17px; padding:8px 15px; }
+        }
+
+
+        /* =====================================================
            STICKY CHATGPT ICON
         ====================================================== */
 
@@ -2371,7 +2432,12 @@
 
             <a href="#events">Events</a>
 
-            <a href="contact.html" class="contact-nav-link">Contact</a>
+            <a href="contact.html" class="contact-nav-link" data-i18n="Contact">Contact</a>
+
+            <button type="button" class="language-toggle" id="languageToggle" aria-label="Change language">
+                <span class="lang-en">తెలుగు</span>
+                <span class="lang-te">English</span>
+            </button>
 
            <!-- <a href="#location">Location</a> -->
 
@@ -3398,7 +3464,11 @@
         </div>
 
         <div class="footer-reachout">
-            For beautiful wedding invitation websites like this, <a href="contact.html">reach out to <strong>Digital Innovation Tech</strong></a>.
+            <span data-i18n="For beautiful wedding invitation websites like this,">For beautiful wedding invitation websites like this,</span>
+            <a href="contact.html" class="reachout-contact-btn">
+                <span data-i18n="Reach Out">Reach Out</span>
+                <strong>Digital Innovation Tech</strong>
+            </a>
         </div>
 
     </footer>
@@ -3847,6 +3917,144 @@
 
                 container.appendChild(flower);
             }
+        })();
+
+
+
+
+        /* =====================================================
+           ENGLISH / TELUGU LANGUAGE SWITCHER
+           Translates the complete visible website text and
+           remembers the visitor's selected language.
+        ====================================================== */
+
+        (function initLanguageSwitcher() {
+
+            const translations = {
+                "With Joy & God's Blessings":"ఆనందం మరియు దేవుని ఆశీర్వాదాలతో",
+                "14 OCTOBER 2026":"14 అక్టోబర్ 2026",
+                "💌 OPEN INVITATION":"💌 ఆహ్వానం తెరవండి",
+                "Home":"హోమ్",
+                "Groom":"వరుడు",
+                "Bride":"వధువు",
+                "Wedding":"వివాహం",
+                "Reception":"రిసెప్షన్",
+                "Gallery":"గ్యాలరీ",
+                "Events":"కార్యక్రమాలు",
+                "Contact":"సంప్రదించండి",
+                "WITH THE BLESSINGS OF GOD":"దేవుని ఆశీర్వాదాలతో",
+                "Together with their families,":"వారి కుటుంబ సభ్యులతో కలిసి,",
+                "We joyfully invite you to celebrate the wedding of":"వారి వివాహ వేడుకను ఆనందంగా జరుపుకోవడానికి మిమ్మల్ని ఆహ్వానిస్తున్నాము",
+                "We solicit your gracious presence with family and friends on the auspicious occasion of their marriage.":"వారి వివాహ శుభ సందర్భంగా మీ కుటుంబ సభ్యులు మరియు స్నేహితులతో కలిసి మీ అమూల్యమైన సాన్నిధ్యాన్ని కోరుకుంటున్నాము.",
+                "WEDNESDAY":"బుధవారం",
+                "OCTOBER 2026":"అక్టోబర్ 2026",
+                "WEDDING CEREMONY":"వివాహ వేడుక",
+                "WITH GOD'S BLESSINGS":"దేవుని ఆశీర్వాదాలతో",
+                "Therefore what God has joined together, let no one separate.":"దేవుడు కలిపిన బంధాన్ని ఎవరూ విడదీయకూడదు.",
+                "Two hearts, one beautiful journey, blessed forever by God.":"రెండు హృదయాలు, ఒక అందమైన ప్రయాణం — దేవుని ఆశీర్వాదాలతో ఎల్లప్పుడూ కలిసే ఉంటాయి.",
+                "THE GROOM":"వరుడు",
+                "With God's grace and blessings, he is ready to begin a beautiful new journey of life.":"దేవుని కృప మరియు ఆశీర్వాదాలతో, అతను జీవితంలో ఒక అందమైన కొత్త ప్రయాణాన్ని ప్రారంభించడానికి సిద్ధంగా ఉన్నాడు.",
+                "Groom's Parents":"వరుడి తల్లిదండ్రులు",
+                "A Blessed Beginning":"ఆశీర్వాదమయమైన ఆరంభం",
+                "May this new chapter be filled with love, faith, happiness and countless blessings.":"ఈ కొత్త అధ్యాయం ప్రేమ, విశ్వాసం, ఆనందం మరియు ఎన్నో ఆశీర్వాదాలతో నిండిపోవాలి.",
+                "THE BRIDE":"వధువు",
+                "With faith, love and God's blessings, she steps into a beautiful new beginning of life.":"విశ్వాసం, ప్రేమ మరియు దేవుని ఆశీర్వాదాలతో, ఆమె జీవితంలోని అందమైన కొత్త ఆరంభంలోకి అడుగుపెడుతోంది.",
+                "Bride's Parents":"వధువు తల్లిదండ్రులు",
+                "A Beautiful Journey":"అందమైన ప్రయాణం",
+                "Two hearts, one faith and one beautiful journey together.":"రెండు హృదయాలు, ఒకే విశ్వాసం, ఒక అందమైన సంయుక్త ప్రయాణం.",
+                "THE WEDDING CEREMONY":"వివాహ వేడుక",
+                "Wedding Ceremony":"వివాహ వేడుక",
+                "Holy Matrimony":"పవిత్ర వివాహ బంధం",
+                "Wednesday, 14 October 2026":"బుధవారం, 14 అక్టోబర్ 2026",
+                "At 10:00 AM":"ఉదయం 10:00 గంటలకు",
+                "📍 View Wedding Location":"📍 వివాహ ప్రదేశాన్ని చూడండి",
+                "Wedding Lunch":"వివాహ విందు",
+                "Following the Ceremony":"వివాహ వేడుక అనంతరం",
+                "We warmly invite you to join us for lunch and celebrate this blessed occasion together.":"ఈ ఆశీర్వాదమయమైన సందర్భాన్ని కలిసి జరుపుకోవడానికి విందులో మాతో చేరాలని ఆహ్వానిస్తున్నాము.",
+                "JOIN US FOR THE RECEPTION":"రిసెప్షన్‌కు మాతో చేరండి",
+                "Wedding Reception":"వివాహ రిసెప్షన్",
+                "Friday, 16 October 2026":"శుక్రవారం, 16 అక్టోబర్ 2026",
+                "11:00 AM onwards":"ఉదయం 11:00 గంటల నుండి",
+                "Kode Function Hall":"కోడే ఫంక్షన్ హాల్",
+                "Opp. RTC Bus Stand":"RTC బస్ స్టాండ్ ఎదురుగా",
+                "Satyanarayana Puram":"సత్యనారాయణ పురం",
+                "Gudivada, Krishna District":"గుడివాడ, కృష్ణా జిల్లా",
+                "Andhra Pradesh – 521301":"ఆంధ్రప్రదేశ్ – 521301",
+                "📍 View Reception Location":"📍 రిసెప్షన్ ప్రదేశాన్ని చూడండి",
+                "Celebrate With Us":"మాతో కలిసి వేడుక జరుపుకోండి",
+                "Your presence will make our celebration even more special.":"మీ సాన్నిధ్యం మా వేడుకను మరింత ప్రత్యేకంగా చేస్తుంది.",
+                "Come bless the newly married couple and share in their happiness.":"కొత్తగా వివాహమైన జంటను ఆశీర్వదించి, వారి ఆనందంలో భాగస్వాములు కండి.",
+                "OUR MEMORIES":"మా జ్ఞాపకాలు",
+                "CELEBRATION":"వేడుక",
+                "Event Timeline":"కార్యక్రమాల వివరాలు",
+                "After Ceremony":"వివాహ వేడుక అనంతరం",
+                "Join us for a blessed meal together.":"ఆశీర్వాదమయమైన విందును మాతో కలిసి ఆస్వాదించండి.",
+                "16 October 2026":"16 అక్టోబర్ 2026",
+                "FIND US":"మమ్మల్ని కనుగొనండి",
+                "Wedding & Reception Locations":"వివాహం & రిసెప్షన్ ప్రదేశాలు",
+                "📍 Open Wedding Map":"📍 వివాహ మ్యాప్ తెరవండి",
+                "📍 Open Reception Map":"📍 రిసెప్షన్ మ్యాప్ తెరవండి",
+                "Your Presence Matters":"మీ సాన్నిధ్యం ఎంతో ముఖ్యం",
+                "We would be delighted to celebrate this special day with you.":"ఈ ప్రత్యేకమైన రోజును మీతో కలిసి జరుపుకోవడం మాకు ఎంతో ఆనందంగా ఉంటుంది.",
+                "Please join us with your family and friends and bless the couple.":"మీ కుటుంబ సభ్యులు మరియు స్నేహితులతో కలిసి వచ్చి ఈ జంటను ఆశీర్వదించండి.",
+                "© 2026 Digital Innovation Tech. All Rights Reserved.":"© 2026 Digital Innovation Tech. సర్వహక్కులు రిజర్వ్ చేయబడ్డాయి.",
+                "For beautiful wedding invitation websites like this,":"ఇలాంటి అందమైన వివాహ ఆహ్వాన వెబ్‌సైట్‌ల కోసం,",
+                "Reach Out":"సంప్రదించండి",
+                "Digital Innovation Tech":"Digital Innovation Tech",
+                "Groom's Parents":"వరుడి తల్లిదండ్రులు",
+                "Bride's Parents":"వధువు తల్లిదండ్రులు"
+            };
+
+            const reverseTranslations = Object.fromEntries(
+                Object.entries(translations).map(([en, te]) => [te, en])
+            );
+
+            const normalize = value => value.replace(/\\s+/g, " ").trim();
+
+            function translatePage(language) {
+                const map = language === "te" ? translations : reverseTranslations;
+
+                const walker = document.createTreeWalker(
+                    document.body,
+                    NodeFilter.SHOW_TEXT
+                );
+
+                const nodes = [];
+                let node;
+                while ((node = walker.nextNode())) nodes.push(node);
+
+                nodes.forEach(textNode => {
+                    const value = normalize(textNode.nodeValue);
+                    if (!value || !map[value]) return;
+
+                    const leading = textNode.nodeValue.match(/^\\s*/)?.[0] || "";
+                    const trailing = textNode.nodeValue.match(/\\s*$/)?.[0] || "";
+                    textNode.nodeValue = leading + map[value] + trailing;
+                });
+
+                document.documentElement.lang = language === "te" ? "te" : "en";
+                localStorage.setItem("weddingLanguage", language);
+
+                const button = document.getElementById("languageToggle");
+                if (button) {
+                    button.querySelector(".lang-en").style.display = language === "en" ? "inline" : "none";
+                    button.querySelector(".lang-te").style.display = language === "te" ? "inline" : "none";
+                    button.setAttribute("aria-label", language === "en" ? "Switch to Telugu" : "Switch to English");
+                }
+            }
+
+            const button = document.getElementById("languageToggle");
+            const savedLanguage = localStorage.getItem("weddingLanguage") || "en";
+
+            if (button) {
+                button.addEventListener("click", function () {
+                    const current = localStorage.getItem("weddingLanguage") || "en";
+                    translatePage(current === "en" ? "te" : "en");
+                });
+            }
+
+            translatePage(savedLanguage);
+
         })();
 
 </script>
