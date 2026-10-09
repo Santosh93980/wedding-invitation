@@ -92,7 +92,7 @@ function updateDashboard_(ss) {
   dashboard.getRange("A3").setValue("Total Page Visits");
   dashboard.getRange("B3").setFormula("=MAX(0,COUNTA(Visitors!A2:A))");
   dashboard.getRange("A4").setValue("Unique Browser Sessions");
-  dashboard.getRange("B4").setFormula("=IFERROR(COUNTA(UNIQUE(FILTER(Visitors!G2:G,Visitors!G2:G<>""))),0)");
+  dashboard.getRange("B4").setFormula('=IFERROR(COUNTA(UNIQUE(FILTER(Visitors!G2:G,Visitors!G2:G<>""))),0)');
   dashboard.getRange("A5").setValue("Contact Enquiries");
   dashboard.getRange("B5").setFormula("=MAX(0,COUNTA(Contacts!A2:A))");
   dashboard.getRange("A7").setValue("Note");
